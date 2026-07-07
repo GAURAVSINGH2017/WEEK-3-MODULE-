@@ -1,8 +1,8 @@
-// Organizing library book id's
+// Online store sales ranking   
 
 #include <stdio.h>
 
-// Function to sort the array using the simple Quick Sort method
+// Function to sort the array in descending order using the simple Quick Sort method
 void quicksort(int arr[], int first, int last) {
     if (first < last) {
         int pivot = first; // Set the first element as the pivot
@@ -10,12 +10,13 @@ void quicksort(int arr[], int first, int last) {
         int j = last;
         int temp;
 
-        // Rearrange elements around the pivot
+        // Rearrange elements around the pivot for DESCENDING order
         while (i < j) {
-            while (arr[i] <= arr[pivot] && i < last) {
+            while (arr[i] >= arr[pivot] && i < last) {
                 i++;
             }
-            while (arr[j] > arr[pivot]) {
+
+            while (arr[j] < arr[pivot]) {
                 j--;
             }
             if (i < j) {
@@ -39,30 +40,38 @@ void quicksort(int arr[], int first, int last) {
 int main() {
     int n;
 
-    // Read total number of books
-    printf("Enter the number of books:");
+    // Read total number of sellers
+    printf("enter the number of sellers:");
     scanf("%d", &n);
 
-    // create an array of name ids
-    int ids[n];
+    // CREATE AN ARRAY OF NAMED sales 
+    int  sales[n];
 
-    // Read the book IDs dataset
+    // Read the sales dataset
     for (int i = 0; i < n; i++) {
-      printf("enter the id of  %d book:",i+1);
-      scanf("%d", &ids[i]);
+      printf("enter the data of %d sales:",i+1);
+        scanf("%d", &sales[i]);
     }
 
     // Run simple quicksort from index 0 to n-1
-    quicksort(ids, 0, n - 1);
+    quicksort(sales, 0, n - 1);
 
-    // Print the sorted elements separated by spaces
+    // 1. Print the sorted sales figures in descending order
     for (int i = 0; i < n; i++) {
-        printf("%d", ids[i]);
-        if (i < n - 1) {
+        printf("%d", sales[i]);
+        if (i < n - 1) { 
             printf(" ");
         }
     }
     printf("\n");
+
+    // 2. Print Top 3 highest sales values
+    printf("Top 3: %d %d %d\n", sales[0], sales[1], sales[2]);
+
+    // 3. Calculate and print the average of the top 3 values
+    int  sum = sales[0] + sales[1] + sales[2];
+    int average = sum / 3;
+    printf("Average: %d\n", average);
 
     return 0;
 }
